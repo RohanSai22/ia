@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "../ui/button";
 import Colors from "@/data/Colors";
 import { UserDetailContext } from "@/context/UserDetailContext";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { LucideDownload } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ActionContext } from "@/context/ActionContext";
+import SignInDialogue from "./SignInDialogue";
 
 //gap-4 is used try using gap-5 as well
 function Header() {
@@ -15,12 +16,17 @@ function Header() {
   const path = usePathname();
   const { action, setAction } = useContext(ActionContext);
   //const { toggleSidebar } = useSidebar();
+  const [openDialog, setOpenDialog] = useState(false);
 
   const onActionBtn = (action) => {
     setAction({
       actionType: action,
       timeStamp: Date.now(),
     });
+  };
+  // Handler to open the Google sign in pop-up
+  const handleSignInOrGetStarted = () => {
+    setOpenDialog(true);
   };
 
   return (
@@ -32,13 +38,14 @@ function Header() {
         <Image src={"/Ia.svg"} alt="Logo" width={40} height={40}></Image>
       </Link>
       {!userDetail?.name ? (
-        <div className="flex gap-5">
+        <div className="flex gap-5" onClick={handleSignInOrGetStarted}>
           <Button variant="ghost">Sign In</Button>
           <Button
             className="text-white"
             style={{
               backgroundColor: Colors.BLUE,
             }}
+            onClick={handleSignInOrGetStarted}
           >
             Get Started
           </Button>
@@ -71,6 +78,7 @@ function Header() {
           </div>
         )
       )}
+      <SignInDialogue openDialog={openDialog} closeDialog={setOpenDialog} />
     </div>
   );
 }
