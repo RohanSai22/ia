@@ -1,18 +1,24 @@
-import { HelpCircle, LogOut, Settings, Wallet } from "lucide-react";
+"use client";
+import { HelpCircle, LogOut, Wallet } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { useSidebar } from "../ui/sidebar";
 
 function SideBarFooter() {
   const router = useRouter();
+  const { toggleSidebar, sidebarOpen } = useSidebar();
+  const handleSignOut = () => {
+    // Remove the user from local storage to sign out.
+    localStorage.removeItem("user");
+    // Instantly Signs you out ...
+    window.location.href = "/";
+  };
   const options = [
-    {
-      name: "Settings",
-      icon: Settings,
-    },
     {
       name: "Help",
       icon: HelpCircle,
+      path: "/help",
     },
     {
       name: "My Subscription",
@@ -22,11 +28,17 @@ function SideBarFooter() {
     {
       name: "Sign Out",
       icon: LogOut,
+      action: "signOut",
+      path: "/",
     },
   ];
 
   const onOptionClick = (option) => {
-    router.push(option.path);
+    if (option.action === "signOut") {
+      handleSignOut();
+    } else if (option.path) {
+      router.push(option.path);
+    }
   };
   return (
     <div className="p-2 mb-10">

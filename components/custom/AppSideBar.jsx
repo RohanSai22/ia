@@ -1,3 +1,4 @@
+"use client";
 import {
   Sidebar,
   SidebarContent,
@@ -8,19 +9,30 @@ import {
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import { MessageCircleCode } from "lucide-react";
+import { MessageCircleCode, Menu } from "lucide-react";
 import WorkspaceHistory from "./WorkspaceHistory";
 import SideBarFooter from "./SideBarFooter";
+import Link from "next/link";
+import { useSidebar } from "../ui/sidebar";
 
 function AppSideBar() {
+  const { toggleSidebar } = useSidebar();
   return (
     <Sidebar>
       <SidebarHeader className="p-5">
-        <Image src={"/IA.svg"} alt="Logo" width={30} height={30} />
-        <Button className="mt-5">
-          <MessageCircleCode />
-          Start New Chat
-        </Button>
+        <div className="flex justify-between items-center">
+          <Image src={"/IA.svg"} alt="Logo" width={30} height={30} />
+          {/* Icon to toggle the sidebar */}
+          <Button onClick={toggleSidebar} variant="ghost" className="p-2">
+            <Menu />
+          </Button>
+        </div>
+        <Link href={"/"}>
+          <Button className="mt-5">
+            <MessageCircleCode />
+            Start New Chat
+          </Button>
+        </Link>
       </SidebarHeader>
       <SidebarContent className="p-5">
         <SidebarGroup>

@@ -4,7 +4,7 @@ export default {
   SUGGSTIONS: [
     "Create ToDo App in React",
     "Create Budget Track App",
-    "Create Medicine Managment Portal",
+    "Create Medicine Managment Portal in short",
     "Create Quiz App On Science",
     "Create well defined Login Signup Screen",
   ],
