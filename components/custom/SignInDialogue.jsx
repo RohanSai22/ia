@@ -41,6 +41,7 @@ function SignInDialogue({ openDialog, closeDialog }) {
         localStorage.setItem("user", JSON.stringify(user));
       }
       setUserDetail(userInfo?.data);
+      window.location.reload();
 
       //Save the User DataBase to save all our data
       closeDialog(false);
