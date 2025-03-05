@@ -16,8 +16,16 @@ function SandpackPreviewClient() {
     if (client) {
       console.log(client);
       const result = await client.getCodeSandboxURL();
-      if (action?.actionType == "deploy") {
-        window.open("https://" + result?.sandboxId + ".csb.app/", "_blank");
+      if (action?.actionType === "deploy") {
+        // Create an anchor element to simulate a direct click
+        const url = "https://" + result?.sandboxId + ".csb.app";
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.target = "_blank";
+        // Append it, trigger click, then remove it
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
       } else if (action?.actionType == "export") {
         window?.open(result?.editorUrl, "_blank");
       }
