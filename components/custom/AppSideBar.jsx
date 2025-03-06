@@ -21,7 +21,7 @@ function AppSideBar() {
     <Sidebar>
       <SidebarHeader className="p-5">
         <div className="flex justify-between items-center">
-          <Image src={"/IA.svg"} alt="Logo" width={30} height={30} />
+          <Image src={"/Ia.svg"} alt="Logo" width={30} height={30} />
           {/* Icon to toggle the sidebar */}
           <Button onClick={toggleSidebar} variant="ghost" className="p-2">
             <Menu />

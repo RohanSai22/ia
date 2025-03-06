@@ -2,11 +2,11 @@ import dedent from "dedent";
 
 export default {
   SUGGSTIONS: [
-    "Create ToDo App in React",
-    "Create Budget Track App",
-    "Create Medicine Managment Portal in short",
-    "Create Quiz App On Science",
-    "Create well defined Login Signup Screen",
+    "Create ToDo App in React smaller version",
+    "Give Smaller Version of Budget Track App",
+    "Make small version of Medicine Managment Portal ",
+    "Make a short version of Quiz App on science",
+    "Create minimal Login Signup Screen ",
   ],
   HERO_HEADING: "What idea do you want to work on?",
   HERO_DESC: "Prompt, run, edit, and deploy full-stack web apps.",
